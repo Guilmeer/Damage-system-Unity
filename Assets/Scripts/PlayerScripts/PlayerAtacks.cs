@@ -40,7 +40,7 @@ public class PlayerAtacks : MonoBehaviour {
         }
     }
     public void MakeDamage (string[] methods, Vector3 colPos, GameObject enemy) {
-        print (colPos);
+        // print (colPos);
         object[] target = new object[] { enemy, colPos };
         foreach (string item in methods) {
             GetType ().GetMethod (item).Invoke (this, target);
@@ -81,12 +81,13 @@ public class PlayerAtacks : MonoBehaviour {
     IEnumerator FireDamageEnum (Transform enemyTransform) {
         int i = 0;
         while (i < 2) {
-            if (enemyTransform) {
-                print ("FireDamage" + i);
+            if (enemyTransform && enemyTransform.GetComponent<EnemiesHealth> ().GetHealth() > 0) {
+                print ("\rFireDamage " + i+1);
                 enemyTransform.GetComponent<EnemiesHealth> ().UpdateHealth (-1);
                 yield return new WaitForSeconds (1);
                 i++;
             }
+            else{i++;}
         }
     }
 

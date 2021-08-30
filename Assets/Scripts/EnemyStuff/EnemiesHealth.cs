@@ -6,8 +6,12 @@ using UnityEngine;
 public class EnemiesHealth : MonoBehaviour {
     private float health;
 
+    public float GetHealth(){
+        return this.health;
+    }
+
     private void Start () {
-        health = 11;
+        health = 12;
     }
 
     public void UpdateHealth (float amount) {
